@@ -14,14 +14,18 @@
         <div class="logo">
             <a href="#"><img src="logo.png" alt="AZScale Logo"></a>
         </div>
-        <nav>
-            <ul>
-                 <li><a href="#start">Start</a></li>
-                <li><a href="#portfolio">Projekty</a></li>
-                <li><a href="#kontakt">Kontakt</a></li>
-            </ul>
-        </nav>
-    </header>
+<div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+ <nav class="nav-menu"> <ul>
+        <li><a href="#start">Start</a></li>
+        <li><a href="#portfolio">Projekty</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+</nav>
+</header>
 
     <section class="hero" id="start">
         <div class="hero-content">
@@ -146,6 +150,26 @@ Zobacz wszystko</div></a>
         <p>&copy; 2026 AZScale. Wszystkie prawa zastrzeżone.</p>
     </div>
 </footer>
+<script>
+const menu = document.querySelector('#mobile-menu');
+const nav = document.querySelector('.nav-menu');
+const navLinks = document.querySelectorAll('.nav-menu a');
+
+// Otwieranie/Zamykanie po kliknięciu w hamburger
+menu.addEventListener('click', () => {
+    menu.classList.toggle('is-active');
+    nav.classList.toggle('active');
+});
+
+// Zamykanie po kliknięciu w dowolny link
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        menu.classList.remove('is-active');
+        nav.classList.remove('active');
+    });
+});
+</script>
+
 
 </body>
 </html>

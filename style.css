@@ -69,16 +69,15 @@ nav a {
 /* --- ZMODYFIKOWANY PRZYCISK --- */
 
 .button {
-    padding: 1rem;
-    background-color: var(--primary-accent); /* Używamy zmiennej dla spójności */
+    padding: 1rem 2rem;
+    background-color: var(--primary-accent);
     border-radius: 50px;
     text-align: center;
     margin-top: 2rem;
-    width: 400px;
-    justify-self: center;
+    width: 100%; /* Mobilnie na całą szerokość */
+    max-width: 400px; /* Ale nie szerszy niż 400px */
     transition: var(--transition-smooth);
     cursor: pointer;
-    border: 1px solid transparent; /* Rezerwujemy miejsce na border */
     text-decoration: none;
 }
 
@@ -372,4 +371,80 @@ padding-bottom: 2rem;
     .footer-description {
         margin: 0 auto;
     }
+}
+
+.menu-toggle {
+    display: none; /* Ukryte na desktopie */
+    flex-direction: column;
+    cursor: pointer;
+}
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+@media (max-width: 992px) {
+    header { padding: 0.8rem 5%; }
+    .portfolio, .footer { padding-left: 5%; padding-right: 5%; }
+}
+
+@media (max-width: 768px) {
+    /* Menu mobilne */
+    .menu-toggle { display: flex; z-index: 1001; }
+    
+    .nav-menu {
+        display: none; /* Kluczowe: całkowicie ukryte na starcie */
+        flex-direction: column;
+        position: absolute; /* Menu "pływa" nad treścią, nie przesuwa jej */
+        top: 100%; /* Pojawia się dokładnie pod headerem */
+        left: 0;
+        width: 100%;
+        background: var(--bg-card);
+        padding: 1.5rem 0;
+        border-bottom: 2px solid var(--primary-accent);
+        z-index: 999;
+    }
+
+    /* Pokazujemy menu tylko gdy ma klasę .active */
+    .nav-menu.active {
+        display: flex;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    /* Pokazujemy ikonę hamburgera */
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+    }
+
+    /* Animacja hamburgera */
+    .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.is-active .bar:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+    .menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
+
+    /* Hero - mniejsze teksty */
+    .hero { height: 70vh; }
+    .hero h1 { font-size: 2.2rem; }
+
+    /* Grid - jedna kolumna na bardzo małych ekranach */
+    .grid, .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2.5rem;
+    }
+
+    .footer-description { margin: 0 auto; }
 }
